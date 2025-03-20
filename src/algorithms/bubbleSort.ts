@@ -69,16 +69,15 @@ const drawBars = () => {
     .data(data)
     .join('rect')
     .attr('class', 'bar')
-    .attr('x', (d, i) => xScale(i) + barSpacing / 2)
+    .attr('x', (_d, i) => xScale(i) + barSpacing / 2)
     .attr('y', d => yScale(d.value))
     .attr('width', Math.max(barWidth, 2))
     .attr('height', d => availableHeight - yScale(d.value))
-    .attr('rx', 3) // Rounded corners
+    .attr('rx', 3)
     .style('fill', d => {
       switch (d.state) {
         case 'comparing': return '#ff69b4';
         case 'sorted': return '#4CAF50';
-        case 'swapping': return '#FFA500';
         default: return '#2196F3';
       }
     })
@@ -89,7 +88,7 @@ const drawBars = () => {
     .data(data)
     .join('text')
     .attr('class', 'value')
-    .attr('x', (d, i) => xScale(i) + barWidth / 2 + barSpacing / 2)
+    .attr('x', (_d, i) => xScale(i) + barWidth / 2 + barSpacing / 2)
     .attr('y', d => yScale(d.value) - 8)
     .attr('text-anchor', 'middle')
     .style('font-size', `${Math.min(14, Math.max(10, barWidth / 2.5))}px`)
